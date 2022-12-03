@@ -6,15 +6,19 @@ using UnityEngine;
 public class movement : MonoBehaviour
 {
     Vector3 playerPosition;
+    [SerializeField]
+    int life = 100;
     int speed = 5;
     [SerializeField]
     GameObject enemy;
+
+    enemyAI enemyAI;
     // Start is called before the first frame update
     void Start()
     {
         playerPosition = transform.position;
-        StartCoroutine(spanEnemys());
-        Instantiate(enemy, new Vector3(1f,0,1f),Quaternion.identity);
+        enemyAI = GameObject.FindGameObjectWithTag("enemy").GetComponent<enemyAI>();
+       // StartCoroutine(spanEnemys());
     }
 
     // Update is called once per frame
@@ -38,12 +42,18 @@ public class movement : MonoBehaviour
         }
        
     }
-
-    void OnCollisionEnter2D()
+    private void OnCollisionStay2D(Collision2D collision)
     {
-        Debug.Log("collided");
+        Debug.Log(collision.gameObject.name);
+        if (collision.gameObject.tag == "enemy")
+        {
+            enemyAI.StartCoroutine("doDamage");
+        }
     }
-
+    public void takedamage(int dmgValue)
+    {
+        life -= dmgValue;
+    }
     IEnumerator spanEnemys()
     {
         while (true)

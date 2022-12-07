@@ -56,7 +56,7 @@ public class enemyAI : MonoBehaviour
     }
     public IEnumerator doDamage()
     {
-        movement player = this.player.GetComponent<movement>();
+        Player player = this.player.GetComponent<Player>();
         yield return new WaitForSeconds(0.5f);
         player.takedamage(attackPower);
         StopCoroutine("doDamage");

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class movement : MonoBehaviour
+public class Player : MonoBehaviour
 {
     Vector3 playerPosition;
     Vector3 playerScale;
@@ -27,7 +27,7 @@ public class movement : MonoBehaviour
     {
         playerPosition = transform.position;
         playerScale = transform.localScale;
-        StartCoroutine(spanEnemys());
+        //StartCoroutine(spanEnemys());
         animate = GetComponent<Animator>();
     }
 

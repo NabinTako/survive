@@ -261,6 +261,7 @@ GameObject:
   - component: {fileID: 124213536}
   - component: {fileID: 124213535}
   - component: {fileID: 124213534}
+  - component: {fileID: 124213541}
   - component: {fileID: 124213538}
   - component: {fileID: 124213540}
   - component: {fileID: 124213539}
@@ -283,9 +284,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 075c3d4b2fa199e4c8eac28adaf52df4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  life: 10
-  enemy: {fileID: 6842407524147914228, guid: fbfe6efc13fc97c45924f829b00e4aa5, type: 3}
-  playerDied: {fileID: 62139315}
+  life: 100
+  enemy: {fileID: 0}
+  playerDied: {fileID: 0}
 --- !u!212 &124213535
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -420,6 +421,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.18234004, y: 0.226482}
   m_EdgeRadius: 0
+--- !u!114 &124213541
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 124213533}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f05f129f65c2ab54da6be72453b97e85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &259101447
 GameObject:
   m_ObjectHideFlags: 0
@@ -914,6 +927,10 @@ PrefabInstance:
     - target: {fileID: 6842407524147914228, guid: fbfe6efc13fc97c45924f829b00e4aa5, type: 3}
       propertyPath: m_Name
       value: bat-fly1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6842407524147914231, guid: fbfe6efc13fc97c45924f829b00e4aa5, type: 3}
+      propertyPath: speed
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fbfe6efc13fc97c45924f829b00e4aa5, type: 3}

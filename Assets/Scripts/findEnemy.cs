@@ -5,14 +5,16 @@ using UnityEngine;
 public class findEnemy : MonoBehaviour
 {
     GameObject closeEnemy;
+    float speed = 0.5f;
     private void Start()
     {
         
     }
-    private void Update()
-    {
+    private void Update() { 
+        if()
         closeEnemy = FindClosestEnemy();
-        Debug.DrawLine(this.transform.position, closeEnemy.transform.position,Color.black);
+
+        transform.position = Vector3.MoveTowards(transform.position, closeEnemy.transform.position, speed * Time.deltaTime);
     }
     public GameObject FindClosestEnemy()
     {
@@ -33,4 +35,13 @@ public class findEnemy : MonoBehaviour
         }
         return closest;
     }
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if(other.gameObject.tag == "enemy")
+        {
+            other.gameObject.GetComponent<enemyAI>().takeDmg(50);
+            Destroy(this.gameObject);
+        }
+    }
+
 }

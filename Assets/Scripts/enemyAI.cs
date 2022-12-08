@@ -14,7 +14,7 @@ public class enemyAI : MonoBehaviour
     private Vector3 Scale;
     //This will be the zombie's speed. Adjust as necessary.
     [SerializeField]
-    private float speed = 0f;
+    private float speed = 1f;
 
     [SerializeField]
     private int attackPower = 5;

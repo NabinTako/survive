@@ -13,7 +13,7 @@ public class Player : MonoBehaviour
 
     bool isAlive = true;
     [SerializeField]
-    GameObject enemy;
+    GameObject[] enemy;
     [SerializeField]
     GameObject playerDied;
 
@@ -22,19 +22,25 @@ public class Player : MonoBehaviour
 
     enemyAI enemyAI;
     GameObject[] EveryEnemies;
+    gunScript gunAmmo;
     // Start is called before the first frame update
     void Start()
     {
         playerPosition = transform.position;
         playerScale = transform.localScale;
-        //StartCoroutine(spanEnemys());
+        StartCoroutine(spanEnemys());
         animate = GetComponent<Animator>();
+        gunAmmo = GameObject.FindGameObjectWithTag("weapon").GetComponent<gunScript>();
     }
 
     // Update is called once per frame
     void Update()
     {
         EveryEnemies = GameObject.FindGameObjectsWithTag("enemy");
+        if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space))
+        {
+            Instantiate(gunAmmo.ammo, GameObject.FindGameObjectWithTag("weapon").transform.position, Quaternion.identity);
+        }
 
         if (life < 0)
         {
@@ -86,7 +92,6 @@ public class Player : MonoBehaviour
         if (collision.gameObject.tag == "enemy")
         {
             enemyAI.StartCoroutine("doDamage");
-            StartCoroutine("giveDmg");
         }
     }
     public void takedamage(int dmgValue)
@@ -99,16 +104,18 @@ public class Player : MonoBehaviour
         while (isAlive)
         {
             yield return new WaitForSeconds(2.0f);
+            int num = (int)Mathf.Ceil(Random.Range(0f, 3f));
             playerPosition = new Vector3(transform.position.x + Random.Range(5f,10f), transform.position.y + Random.Range(5f, 10f), transform.position.z );
-            Instantiate(enemy, playerPosition, Quaternion.identity);
+            Instantiate(enemy[num], playerPosition, Quaternion.identity);
         }
     }
 
-    IEnumerator giveDmg()
+    IEnumerator attack()
     {
-        yield return new WaitForSeconds(0.5f);
-        enemyAI.takeDmg(50);
-        StopCoroutine("giveDmg");
+        yield return new WaitForSeconds(1f);
+
+        Instantiate(gunAmmo.ammo, transform.position, Quaternion.identity);
+
     }
 }
 

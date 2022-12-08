@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8633594342871878577}
   - component: {fileID: 8633594342871878578}
   - component: {fileID: 684199739}
+  - component: {fileID: 3842282399185010419}
   m_Layer: 0
   m_Name: bettle1
   m_TagString: enemy
@@ -146,7 +147,28 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deathAnimation: {fileID: 2442777537167124152, guid: 4de37946e895392448700f28207524e9, type: 3}
-  speed: 0
+  speed: 1
   attackPower: 5
   HP: 100
   isPlayerAlive: 1
+--- !u!50 &3842282399185010419
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8633594342871878590}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4

@@ -11,7 +11,7 @@ public class Player : MonoBehaviour
     int life = 100;
     int speed = 5;
 
-    bool isAlive = true;
+    public bool isAlive = true;
     [SerializeField]
     GameObject[] enemy;
     [SerializeField]
@@ -22,7 +22,6 @@ public class Player : MonoBehaviour
 
     enemyAI enemyAI;
     GameObject[] EveryEnemies;
-    gunScript gunAmmo;
     // Start is called before the first frame update
     void Start()
     {
@@ -30,17 +29,12 @@ public class Player : MonoBehaviour
         playerScale = transform.localScale;
         StartCoroutine(spanEnemys());
         animate = GetComponent<Animator>();
-        gunAmmo = GameObject.FindGameObjectWithTag("weapon").GetComponent<gunScript>();
     }
 
     // Update is called once per frame
     void Update()
     {
         EveryEnemies = GameObject.FindGameObjectsWithTag("enemy");
-        if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space))
-        {
-            Instantiate(gunAmmo.ammo, GameObject.FindGameObjectWithTag("weapon").transform.position, Quaternion.identity);
-        }
 
         if (life < 0)
         {
@@ -108,14 +102,6 @@ public class Player : MonoBehaviour
             playerPosition = new Vector3(transform.position.x + Random.Range(5f,10f), transform.position.y + Random.Range(5f, 10f), transform.position.z );
             Instantiate(enemy[num], playerPosition, Quaternion.identity);
         }
-    }
-
-    IEnumerator attack()
-    {
-        yield return new WaitForSeconds(1f);
-
-        Instantiate(gunAmmo.ammo, transform.position, Quaternion.identity);
-
     }
 }
 

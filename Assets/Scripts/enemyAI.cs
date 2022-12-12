@@ -69,12 +69,12 @@ public class enemyAI : MonoBehaviour
             yield return new WaitForSeconds(0.2f);
             if (checkPos.x > transform.position.x)
             {
-                Scale.x = -objectScale;
+                Scale.x = objectScale;
                 transform.localScale = Scale;
             }
             else
             {
-                Scale.x = objectScale;
+                Scale.x = -objectScale;
                 transform.localScale = Scale;
         }
         }

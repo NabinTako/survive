@@ -5,17 +5,21 @@ using UnityEngine;
 public class findEnemy : MonoBehaviour
 {
     GameObject closeEnemy;
-    float speed = 0.5f;
+    float speed = 2f;
+
+    private void Awake()
+    {
+        closeEnemy = FindClosestEnemy();
+    }
     private void Start()
     {
-        
+        Destroy(this.gameObject, 1f);
     }
-    private void Update() { 
-        if()
-        closeEnemy = FindClosestEnemy();
-
+    private void Update()
+    {
         transform.position = Vector3.MoveTowards(transform.position, closeEnemy.transform.position, speed * Time.deltaTime);
     }
+
     public GameObject FindClosestEnemy()
     {
         GameObject[] enemies;

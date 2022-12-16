@@ -5,19 +5,27 @@ using UnityEngine;
 public class findEnemy : MonoBehaviour
 {
     GameObject closeEnemy;
-    float speed = 2f;
+    float speed = 3f;
 
     private void Awake()
     {
         closeEnemy = FindClosestEnemy();
     }
+
     private void Start()
     {
         Destroy(this.gameObject, 1f);
     }
     private void Update()
     {
-        transform.position = Vector3.MoveTowards(transform.position, closeEnemy.transform.position, speed * Time.deltaTime);
+        if(closeEnemy != null)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, closeEnemy.transform.position, speed * Time.deltaTime);
+        }
+        else
+        {
+            Destroy(this.gameObject);
+        }
     }
 
     public GameObject FindClosestEnemy()

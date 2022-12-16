@@ -5,14 +5,12 @@ using UnityEngine.AI;
 
 public class enemyAI : MonoBehaviour
 {
-    // Start is called before the first frame update
-    //You may consider adding a rigid body to the zombie for accurate physics simulation
     private GameObject player;
     [SerializeField]
     private GameObject deathAnimation;
     private Vector3 playerPosition;
     private Vector3 Scale;
-    //This will be the zombie's speed. Adjust as necessary.
+    //This will be the enemy speed.
     [SerializeField]
     private float speed = 1f;
 
@@ -27,7 +25,6 @@ public class enemyAI : MonoBehaviour
     public bool isPlayerAlive = true;
     void Start()
     {
-        //At the start of the game, the zombies will find the gameobject called wayPoint.
         player = GameObject.Find("player");
         Scale = transform.localScale;
         objectScale = transform.localScale.x;

@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -92,7 +91,6 @@ public class Player : MonoBehaviour
     {
         life -= dmgValue;
     }
-    // 
     IEnumerator spanEnemys()
     {
         while (isAlive)

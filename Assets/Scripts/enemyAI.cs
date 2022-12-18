@@ -6,6 +6,9 @@ using UnityEngine.AI;
 public class enemyAI : MonoBehaviour
 {
     private GameObject player;
+
+
+    private score score;
     [SerializeField]
     private GameObject deathAnimation;
     private Vector3 playerPosition;
@@ -17,6 +20,7 @@ public class enemyAI : MonoBehaviour
     [SerializeField]
     private int attackPower = 5;
     private float objectScale;
+    public int scorepoint;
 
     [SerializeField]
     private int HP = 100;
@@ -26,6 +30,7 @@ public class enemyAI : MonoBehaviour
     void Start()
     {
         player = GameObject.Find("player");
+        score = GameObject.Find("Canvas").GetComponent<score>();
         Scale = transform.localScale;
         objectScale = transform.localScale.x;
         StartCoroutine(leftRight());
@@ -43,6 +48,7 @@ public class enemyAI : MonoBehaviour
         if(HP < 0)
         {
             Instantiate(deathAnimation,transform.position,Quaternion.identity);
+            score.addScore(scorepoint);
             Destroy(this.gameObject);
         }
 

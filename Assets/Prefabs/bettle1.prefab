@@ -149,6 +149,7 @@ MonoBehaviour:
   deathAnimation: {fileID: 2442777537167124152, guid: 4de37946e895392448700f28207524e9, type: 3}
   speed: 1
   attackPower: 5
+  scorepoint: 5
   HP: 100
   isPlayerAlive: 1
 --- !u!50 &3842282399185010419

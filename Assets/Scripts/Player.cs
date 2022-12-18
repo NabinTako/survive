@@ -44,6 +44,7 @@ public class Player : MonoBehaviour
                 enemy.GetComponent<enemyAI>().isPlayerAlive = false;
             }
             Instantiate(playerDied,transform.position,Quaternion.identity);
+            GameObject.Find("Canvas").GetComponent<score>().stopTime();
             Destroy(this.gameObject);
         }
         if (Input.GetKey(KeyCode.W))

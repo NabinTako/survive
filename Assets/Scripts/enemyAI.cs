@@ -15,7 +15,7 @@ public class enemyAI : MonoBehaviour
     private Vector3 Scale;
     //This will be the enemy speed.
     [SerializeField]
-    private float speed = 1f;
+    private float speed;
 
     [SerializeField]
     private int attackPower = 5;
@@ -34,6 +34,7 @@ public class enemyAI : MonoBehaviour
         Scale = transform.localScale;
         objectScale = transform.localScale.x;
         StartCoroutine(leftRight());
+        speed = GameObject.Find("level").GetComponent<DificultyType>().enemySpeed;
     }
 
     void Update()

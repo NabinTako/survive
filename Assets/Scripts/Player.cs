@@ -15,7 +15,7 @@ public class Player : MonoBehaviour
     GameObject[] enemy;
     [SerializeField]
     GameObject playerDied;
-
+    DificultyType dificultyType;
 
     Animator animate;
 
@@ -28,6 +28,12 @@ public class Player : MonoBehaviour
         playerScale = transform.localScale;
         StartCoroutine(spanEnemys());
         animate = GetComponent<Animator>();
+        dificultyType = GameObject.Find("level").GetComponent<DificultyType>();
+        if (dificultyType == null)
+        {
+            Debug.Log("Something went wrong, Level not assigned");
+        }
+
     }
 
     // Update is called once per frame
@@ -92,15 +98,20 @@ public class Player : MonoBehaviour
     {
         life -= dmgValue;
     }
+
     IEnumerator spanEnemys()
     {
+       // float spanTime = dificultyType.enemySpanTime;
         while (isAlive)
         {
-            yield return new WaitForSeconds(2.0f);
+            yield return new WaitForSeconds(2f);
             int num = (int)Mathf.Ceil(Random.Range(0f, 3f));
-            playerPosition = new Vector3(transform.position.x + Random.Range(5f,10f), transform.position.y + Random.Range(5f, 10f), transform.position.z );
-            Instantiate(enemy[num], playerPosition, Quaternion.identity);
+            for (int i = 0; i < dificultyType.enemyNumber; i++)
+            {
+                playerPosition = new Vector3(transform.position.x + Random.Range(5f, 10f), transform.position.y + Random.Range(5f, 10f), transform.position.z);
+                Instantiate(enemy[num], playerPosition, Quaternion.identity);
+            }
         }
-    }
+    } 
 }
 

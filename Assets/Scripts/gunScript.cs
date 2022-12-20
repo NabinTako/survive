@@ -7,10 +7,13 @@ public class gunScript : MonoBehaviour
 
     [SerializeField]
     public GameObject ammo;
+    DificultyType dificultyType;
     // Start is called before the first frame update
     void Start()
     {
         StartCoroutine(attack());
+        dificultyType = GameObject.Find("level").GetComponent<DificultyType>();
+        if (dificultyType == null) Debug.Log("Something went wrong, Level not assigned");
     }
 
     // Update is called once per frame
@@ -24,6 +27,7 @@ public class gunScript : MonoBehaviour
     }
     IEnumerator attack()
     {
+       // float fireRate = dificultyType.fireRate;
         while (true)
         {
             yield return new WaitForSeconds(1f);

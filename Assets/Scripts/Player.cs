@@ -33,6 +33,11 @@ public class Player : MonoBehaviour
         {
             Debug.Log("Something went wrong, Level not assigned");
         }
+        else
+        {
+            Debug.Log("not null");
+        }
+        Debug.Log(dificultyType.enemySpanTime);
 
     }
 
@@ -101,7 +106,7 @@ public class Player : MonoBehaviour
 
     IEnumerator spanEnemys()
     {
-       // float spanTime = dificultyType.enemySpanTime;
+      //spanTime = ;
         while (isAlive)
         {
             yield return new WaitForSeconds(2f);

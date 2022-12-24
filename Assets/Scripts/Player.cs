@@ -33,11 +33,6 @@ public class Player : MonoBehaviour
         {
             Debug.Log("Something went wrong, Level not assigned");
         }
-        else
-        {
-            Debug.Log("not null");
-        }
-        Debug.Log(dificultyType.enemySpanTime);
 
     }
 

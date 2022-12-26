@@ -6,6 +6,8 @@ public class Player : MonoBehaviour
 {
     Vector3 playerPosition;
     Vector3 playerScale;
+    Vector3 playerHealthBar;
+
     [SerializeField]
     int life = 100;
     int speed = 5;
@@ -15,17 +17,22 @@ public class Player : MonoBehaviour
     GameObject[] enemy;
     [SerializeField]
     GameObject playerDied;
-    DificultyType dificultyType;
+    [SerializeField]
+    GameObject playerHealth;
+
+    GameObject[] EveryEnemies;
+
 
     Animator animate;
 
+    DificultyType dificultyType;
     enemyAI enemyAI;
-    GameObject[] EveryEnemies;
     // Start is called before the first frame update
     void Start()
     {
         playerPosition = transform.position;
         playerScale = transform.localScale;
+        playerHealthBar = playerHealth.transform.localScale;
         StartCoroutine(spanEnemys());
         animate = GetComponent<Animator>();
         dificultyType = GameObject.Find("level").GetComponent<DificultyType>();
@@ -41,18 +48,13 @@ public class Player : MonoBehaviour
     {
         EveryEnemies = GameObject.FindGameObjectsWithTag("enemy");
 
-        if (life < 0)
-        {
-            
-            isAlive = false;
-            foreach (GameObject enemy in EveryEnemies)
-            {
-                enemy.GetComponent<enemyAI>().isPlayerAlive = false;
-            }
-            Instantiate(playerDied,transform.position,Quaternion.identity);
-            GameObject.Find("Canvas").GetComponent<score>().stopTime();
-            Destroy(this.gameObject);
-        }
+        checkLife();
+        movement();
+       
+    }
+
+    public void movement()
+    {
         if (Input.GetKey(KeyCode.W))
         {
             transform.position += Vector3.up * speed * Time.deltaTime;
@@ -82,7 +84,78 @@ public class Player : MonoBehaviour
             animate.SetBool("isRunning", false);
 
         }
-       
+    }
+    public void takedamage(int dmgValue)
+    {
+        life -= dmgValue;
+    }
+    public void addLife()
+    {
+        life += 20;
+    }
+    public void checkLife()
+    {
+        if (life < 0)
+        {
+
+            isAlive = false;
+            foreach (GameObject enemy in EveryEnemies)
+            {
+                enemy.GetComponent<enemyAI>().isPlayerAlive = false;
+            }
+            Instantiate(playerDied, transform.position, Quaternion.identity);
+            GameObject.Find("Canvas").GetComponent<score>().stopTime();
+            Destroy(this.gameObject);
+        }else if(life > 90)
+        {
+            playerHealthBar.x = 0.2f;
+            playerHealth.transform.localScale = playerHealthBar;
+        }
+        else if(life > 80 && life <= 90)
+        {
+            playerHealthBar.x = 0.17f;
+            playerHealth.transform.localScale = playerHealthBar;
+        }
+        else if (life > 70 && life <= 80)
+        {
+            playerHealthBar.x = 0.15f;
+            playerHealth.transform.localScale = playerHealthBar;
+        }
+        else if (life > 60 && life <= 70)
+        {
+            playerHealthBar.x = 0.14f;
+            playerHealth.transform.localScale = playerHealthBar;
+        }
+        else if (life > 50 && life <= 60)
+        {
+            playerHealthBar.x = 0.12f;
+            playerHealth.transform.localScale = playerHealthBar;
+        }
+        else if (life > 40 && life <= 50)
+        {
+            playerHealthBar.x = 0.1f;
+            playerHealth.transform.localScale = playerHealthBar;
+        }
+        else if (life > 30 && life <= 40)
+        {
+            playerHealthBar.x = 0.08f;
+            playerHealth.transform.localScale = playerHealthBar;
+        }
+        else if (life > 20 && life <= 30)
+        {
+            playerHealthBar.x = 0.06f;
+            playerHealth.transform.localScale = playerHealthBar;
+        }
+        else if (life >= 10 && life <= 20)
+        {
+            playerHealthBar.x = 0.04f;
+            playerHealth.transform.localScale = playerHealthBar;
+        }
+        else
+        {
+            playerHealthBar.x = 0.02f;
+            playerHealth.transform.localScale = playerHealthBar;
+        }
     }
     private void OnCollisionStay2D(Collision2D collision)
     {
@@ -94,14 +167,8 @@ public class Player : MonoBehaviour
             enemyAI.StartCoroutine("doDamage");
         }
     }
-    public void takedamage(int dmgValue)
-    {
-        life -= dmgValue;
-    }
-
     IEnumerator spanEnemys()
     {
-      //spanTime = ;
         while (isAlive)
         {
             yield return new WaitForSeconds(2f);
@@ -113,5 +180,7 @@ public class Player : MonoBehaviour
             }
         }
     } 
+
+   
 }
 

@@ -19,8 +19,8 @@ public class gunScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Player player = GameObject.Find("player").GetComponent<Player>();
-        if(player.isAlive == false)
+        Player player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+        if (player.isAlive == false)
         {
             StopCoroutine("attack");
         }

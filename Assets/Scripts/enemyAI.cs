@@ -29,7 +29,7 @@ public class enemyAI : MonoBehaviour
     public bool isPlayerAlive = true;
     void Start()
     {
-        player = GameObject.Find("player");
+        player = GameObject.FindGameObjectWithTag("Player");
         score = GameObject.Find("Canvas").GetComponent<score>();
         Scale = transform.localScale;
         objectScale = transform.localScale.x;

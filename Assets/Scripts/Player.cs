@@ -35,6 +35,7 @@ public class Player : MonoBehaviour
         playerHealthBar = playerHealth.transform.localScale;
         StartCoroutine(spanEnemys());
         animate = GetComponent<Animator>();
+        playerHealth.SetActive(false);
         dificultyType = GameObject.Find("level").GetComponent<DificultyType>();
         if (dificultyType == null)
         {
@@ -48,7 +49,6 @@ public class Player : MonoBehaviour
     {
         EveryEnemies = GameObject.FindGameObjectsWithTag("enemy");
 
-        checkLife();
         movement();
        
     }
@@ -92,6 +92,7 @@ public class Player : MonoBehaviour
     public void addLife()
     {
         life += 20;
+        checkLife();
     }
     public void checkLife()
     {
@@ -106,8 +107,14 @@ public class Player : MonoBehaviour
             Instantiate(playerDied, transform.position, Quaternion.identity);
             GameObject.Find("Canvas").GetComponent<score>().stopTime();
             Destroy(this.gameObject);
-        }else if(life > 90)
+        }else if(life >= 100)
         {
+
+            playerHealth.SetActive(false);
+        }
+        else if(life > 90 && life <100)
+        {
+
             playerHealthBar.x = 0.2f;
             playerHealth.transform.localScale = playerHealthBar;
         }
@@ -164,8 +171,10 @@ public class Player : MonoBehaviour
         //Debug.Log(collision.gameObject.name);
         if (collision.gameObject.tag == "enemy")
         {
+            playerHealth.SetActive(true);
             enemyAI.StartCoroutine("doDamage");
         }
+        checkLife();
     }
     IEnumerator spanEnemys()
     {

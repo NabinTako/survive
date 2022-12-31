@@ -11,6 +11,7 @@ public class enemyAI : MonoBehaviour
     private score score;
     [SerializeField]
     private GameObject deathAnimation;
+
     private Vector3 playerPosition;
     private Vector3 Scale;
     //This will be the enemy speed.
@@ -27,8 +28,12 @@ public class enemyAI : MonoBehaviour
 
 
     public bool isPlayerAlive = true;
+
+
+    SpriteRenderer objectSprite;
     void Start()
     {
+        objectSprite = GetComponent<SpriteRenderer>();
         player = GameObject.FindGameObjectWithTag("Player");
         score = GameObject.Find("Canvas").GetComponent<score>();
         Scale = transform.localScale;
@@ -73,13 +78,15 @@ public class enemyAI : MonoBehaviour
             yield return new WaitForSeconds(0.2f);
             if (checkPos.x > transform.position.x)
             {
-                Scale.x = objectScale;
-                transform.localScale = Scale;
+                objectSprite.flipX = false;
+               // Scale.x = objectScale;
+                //transform.localScale = Scale;
             }
             else
             {
-                Scale.x = -objectScale;
-                transform.localScale = Scale;
+                objectSprite.flipX = true;
+               //Scale.x = -objectScale;
+               // transform.localScale = Scale;
         }
         }
     }

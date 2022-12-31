@@ -6,8 +6,12 @@ using UnityEngine.UI;
 public class score : MonoBehaviour
 {
     private int Gamescore;
-    private int surviveTime;
+    private int surviveTimesec;
+    private int surviveTimemin;
     private int bestScore;
+
+    public int level;
+    private string[] getscore = {"BestScoreEasy", "BestScoreMedium" , "BestScoreHard" };
 
     [SerializeField]
     private Text scoreText;
@@ -22,7 +26,7 @@ public class score : MonoBehaviour
     {
         scoreText.text = "Score: ";
         timeText.text = "Time: ";
-        bestScore = PlayerPrefs.GetInt("Best Score", 0);
+        bestScore = PlayerPrefs.GetInt(getscore[level], 0);
         Best.text = "Best: " + bestScore;
         StartCoroutine(survivalTime());
     }
@@ -36,15 +40,21 @@ public class score : MonoBehaviour
     public void stopTime()
     {
         isAlive = false;
-        PlayerPrefs.SetInt("Best Score", Gamescore);
+        PlayerPrefs.SetInt(getscore[level], Gamescore);
     }
     IEnumerator survivalTime()
     {
        while (isAlive)
         {
             yield return new WaitForSeconds(1f);
-            surviveTime++;
-            timeText.text = "Time: " + surviveTime + "sec";
+            surviveTimesec++;
+            timeText.text = "Time: " + surviveTimemin + " : "+ surviveTimesec;
+
+            if (surviveTimesec == 59)
+            {
+                surviveTimemin++;
+                surviveTimesec = 0;
+            }
        }
     }
 }

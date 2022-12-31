@@ -5,7 +5,6 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     Vector3 playerPosition;
-    Vector3 playerScale;
     Vector3 playerHealthBar;
 
     [SerializeField]
@@ -24,6 +23,7 @@ public class Player : MonoBehaviour
 
 
     Animator animate;
+    SpriteRenderer playerSprite;
 
     DificultyType dificultyType;
     enemyAI enemyAI;
@@ -31,10 +31,12 @@ public class Player : MonoBehaviour
     void Start()
     {
         playerPosition = transform.position;
-        playerScale = transform.localScale;
         playerHealthBar = playerHealth.transform.localScale;
+
         StartCoroutine(spanEnemys());
         animate = GetComponent<Animator>();
+        playerSprite = GetComponent<SpriteRenderer>();
+
         playerHealth.SetActive(false);
         dificultyType = GameObject.Find("level").GetComponent<DificultyType>();
         if (dificultyType == null)
@@ -69,15 +71,13 @@ public class Player : MonoBehaviour
         {
             transform.position += Vector3.left * speed * Time.deltaTime;
             animate.SetBool("isRunning", true);
-            playerScale.x = -3;
-            transform.localScale = playerScale;
+            playerSprite.flipX = true;
         }
         else if (Input.GetKey(KeyCode.D))
         {
             transform.position += Vector3.right * speed * Time.deltaTime;
             animate.SetBool("isRunning", true);
-            playerScale.x = 3;
-            transform.localScale = playerScale;
+            playerSprite.flipX = false;
         }
         else
         {

@@ -319,6 +319,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 907d35f28138e47479a08e46701f9058, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  level: 0
   scoreText: {fileID: 1376327782}
   timeText: {fileID: 1008939829}
   Best: {fileID: 291680513}

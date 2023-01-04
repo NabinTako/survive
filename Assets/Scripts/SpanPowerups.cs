@@ -29,7 +29,7 @@ public class SpanPowerups : MonoBehaviour
         while (player.isAlive)
         {
          yield return new WaitForSeconds(5f);
-         int powerupIndex = (int) Mathf.Floor(Random.Range(0f, 5f));
+         int powerupIndex = (int) Mathf.Floor(Random.Range(0f, powerUps.Length));
          spanPosition = new Vector3(Random.Range(-8.6f, 8.6f), Random.Range(-4.5f, 4.5f),1);
          Instantiate(powerUps[powerupIndex], spanPosition, Quaternion.identity);
             

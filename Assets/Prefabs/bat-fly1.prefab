@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6842407524147914230}
   - component: {fileID: 6842407524147914231}
   - component: {fileID: 6842407524147914227}
-  - component: {fileID: 8605142093633233206}
+  - component: {fileID: 9163380300905394028}
   m_Layer: 0
   m_Name: bat-fly1
   m_TagString: enemy
@@ -152,7 +152,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.40479308, y: 0.444793}
   m_EdgeRadius: 0
---- !u!50 &8605142093633233206
+--- !u!50 &9163380300905394028
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 0

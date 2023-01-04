@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6872862496838095242}
   - component: {fileID: 6872862496838095237}
   - component: {fileID: 340957578}
-  - component: {fileID: 5380003915741123574}
+  - component: {fileID: 5634028705726125761}
   m_Layer: 0
   m_Name: dog1
   m_TagString: enemy
@@ -152,7 +152,7 @@ MonoBehaviour:
   scorepoint: 5
   HP: 100
   isPlayerAlive: 1
---- !u!50 &5380003915741123574
+--- !u!50 &5634028705726125761
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 0

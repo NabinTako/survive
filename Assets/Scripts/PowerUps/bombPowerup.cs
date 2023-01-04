@@ -5,7 +5,10 @@ using UnityEngine;
 
 public class bombPowerup : MonoBehaviour
 {
-
+    void Start()
+    {
+        Destroy(this.gameObject, 5f);
+    }
     private void OnTriggerEnter2D(Collider2D other)
     {
         if(other.gameObject.tag == "Player")

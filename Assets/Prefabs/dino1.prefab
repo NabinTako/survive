@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4412628290454408138}
   - component: {fileID: 4412628290454408143}
   - component: {fileID: 1442523231}
-  - component: {fileID: 5358416058893483224}
+  - component: {fileID: 2856268472640557458}
   m_Layer: 0
   m_Name: dino1
   m_TagString: enemy
@@ -152,7 +152,7 @@ MonoBehaviour:
   scorepoint: 10
   HP: 100
   isPlayerAlive: 1
---- !u!50 &5358416058893483224
+--- !u!50 &2856268472640557458
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 0

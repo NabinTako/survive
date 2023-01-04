@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8633594342871878577}
   - component: {fileID: 8633594342871878578}
   - component: {fileID: 684199739}
-  - component: {fileID: 3842282399185010419}
+  - component: {fileID: 3385917270070967555}
   m_Layer: 0
   m_Name: bettle1
   m_TagString: enemy
@@ -152,7 +152,7 @@ MonoBehaviour:
   scorepoint: 5
   HP: 100
   isPlayerAlive: 1
---- !u!50 &3842282399185010419
+--- !u!50 &3385917270070967555
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 0

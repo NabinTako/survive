@@ -188,8 +188,16 @@ public class Player : MonoBehaviour
                 Instantiate(enemy[num], playerPosition, Quaternion.identity);
             }
         }
-    } 
+    }
+    public IEnumerator revert()
+    {
 
-   
+        this.gameObject.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 0.5f);
+        yield return new WaitForSeconds(2f);
+        this.gameObject.GetComponent<BoxCollider2D>().isTrigger = false;
+        this.gameObject.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
+    }
+
+
 }
 

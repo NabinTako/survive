@@ -42,6 +42,15 @@ public class score : MonoBehaviour
         isAlive = false;
         PlayerPrefs.SetInt(getscore[level], Gamescore);
     }
+
+    public int getSurviveTimemin()
+    {
+        return surviveTimemin;
+    }
+    public int getSurviveTimesec()
+    {
+        return surviveTimesec;
+    }
     IEnumerator survivalTime()
     {
        while (isAlive)

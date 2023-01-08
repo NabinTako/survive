@@ -9,7 +9,7 @@ public class Player : MonoBehaviour
 
     [SerializeField]
     int life = 100;
-    int speed = 5;
+    int speed = 7;
 
     public bool isAlive = true;
     [SerializeField]
@@ -57,33 +57,39 @@ public class Player : MonoBehaviour
 
     public void movement()
     {
-        if (Input.GetKey(KeyCode.W))
+        float horizontal = Input.GetAxis("Horizontal");
+        float vertical = Input.GetAxis("Vertical");
+
+        if (Input.GetKey(KeyCode.A))
         {
-            transform.position += Vector3.up * speed * Time.deltaTime;
-            animate.SetBool("isRunning", true);
-        }
-        else if (Input.GetKey(KeyCode.S))
-        {
-            transform.position += Vector3.down * speed * Time.deltaTime;
-            animate.SetBool("isRunning", true);
-        }
-        else if (Input.GetKey(KeyCode.A))
-        {
-            transform.position += Vector3.left * speed * Time.deltaTime;
-            animate.SetBool("isRunning", true);
             playerSprite.flipX = true;
         }
-        else if (Input.GetKey(KeyCode.D))
+        if (Input.GetKey(KeyCode.D))
         {
-            transform.position += Vector3.right * speed * Time.deltaTime;
-            animate.SetBool("isRunning", true);
             playerSprite.flipX = false;
+        }
+        if (Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.S))
+        {
+            transform.position += Vector3.zero;
+            animate.SetBool("isRunning", false);
+        }
+        else if (Input.GetKey(KeyCode.A) && Input.GetKey(KeyCode.D))
+        {
+            transform.position += Vector3.zero;
+            animate.SetBool("isRunning", false);
+        }
+        else if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D))
+        {
+            animate.SetBool("isRunning", true);
+            transform.position += new Vector3(horizontal, vertical,0) * speed * Time.deltaTime;
         }
         else
         {
             animate.SetBool("isRunning", false);
 
         }
+
+        
     }
     public void takedamage(int dmgValue)
     {

@@ -6,7 +6,7 @@ public class HpPowerUp : MonoBehaviour
 {
     void Start()
     {
-        Destroy(this.gameObject, 5f);
+        Destroy(this.gameObject, 10f);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
